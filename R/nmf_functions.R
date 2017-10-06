@@ -139,7 +139,7 @@ runNmfGpuPyCuda <- function(nmf.exp, k.min= 2, k.max = 2, outer.iter = 10,
                             inner.iter = 10^4, conver.test.niter = 10,
                             conver.test.stop.threshold = 40, out.dir = NULL,
                             tmp.path = "/tmp/nmf_tmp", nmf.type = "N",
-                            w.sparsness = 0, h.sparsness = 0, gpu.id = 0,
+                            w.sparseness = 0, h.sparseness = 0, gpu.id = 0,
                             seed = FALSE, binary.file.transfer = FALSE,
                             cpu = FALSE) {
   if(!cpu){
@@ -169,8 +169,8 @@ runNmfGpuPyCuda <- function(nmf.exp, k.min= 2, k.max = 2, outer.iter = 10,
                            "-g %i -e %s -sets %s -sv %i"),
                     file.path(system.file(package = "Bratwurst"),
                               "python/nmf_mult.py"),
-                    tmpMatrix.path, k, inner.iter, nmf.type, w.sparsness,
-                    h.sparsness, gpu.id, encoding, "True", i)
+                    tmpMatrix.path, k, inner.iter, nmf.type, w.sparseness,
+                    h.sparseness, gpu.id, encoding, "True", i)
           nmf.stdout <- system2("python", args = nmf.cmd, stdout = T,
                                 stderr = NULL)
           frob.error <- nmf.stdout[grep(nmf.stdout, pattern = "Distance")]
@@ -184,8 +184,8 @@ runNmfGpuPyCuda <- function(nmf.exp, k.min= 2, k.max = 2, outer.iter = 10,
                              "-g %i -e %s"),
                       file.path(system.file(package = "Bratwurst"),
                                 "python/nmf_mult.py"),
-                      tmpMatrix.path, k, inner.iter, nmf.type, w.sparsness,
-                      h.sparsness, gpu.id, encoding)
+                      tmpMatrix.path, k, inner.iter, nmf.type, w.sparseness,
+                      h.sparseness, gpu.id, encoding)
             nmf.stdout <- system2("python", args = nmf.cmd, stdout = T,
                                   stderr = NULL)
             frob.error <- nmf.stdout[grep(nmf.stdout, pattern = "Distance")]
